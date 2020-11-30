@@ -20,6 +20,7 @@
 #include "wait.h"
 #include "snowfox.h"
 #include "board.h"
+#include "sled17341.h"
 
 /* ============ Private Defines ===================== */
 
@@ -48,26 +49,33 @@ const ioline_t col_list[MATRIX_COLS] = {
     LINE_COL9,
 };
 
-
-void __early_init(void) {
+void __chibios_override___early_init(void) {
 }
 
-void matrix_scan_kb(void) {
-    matrix_scan_user();
-}
-
-void matrix_init_kb(void) {
-    matrix_init_user();
-}
+const SPIConfig spi1Config = {
+  .clock_divider = 1, // No Division
+  .clock_prescaler = 24, // To 2MHz
+  .clock_rate = 1, // Divide 2 again to be 1MHz
+  .data_size = 8, // 8 bits per transfer
+};
 
 /**
  * @brief   Board-specific initialization code.
  * @todo    Add your board-specific code, if any.
  */
-void boardInit(void) {
+void __chibios_override_boardInit(void) {
     // ISP TP
     palSetLineMode(LINE_LED, MODE_DIR_IN | MODE_MODE_PULL_UP | MODE_AD_DIGITAL);
     // USB
     palSetLineMode(LINE_USBVBUS, MODE_FUNC_ALT1 | MODE_MODE_PULL_UP | MODE_AD_DIGITAL);
     palSetLineMode(LINE_USBCONN, MODE_FUNC_ALT1);
+    // LEDs
+    palSetLineMode(LINE_LED1_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);
+    palSetLineMode(LINE_LED2_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);
+    palSetLineMode(LINE_SSP1_MOSI, MODE_FUNC_ALT2 | MODE_AD_DIGITAL); // SSP1 MOSI
+    palSetLineMode(LINE_SSP1_MISO, MODE_FUNC_ALT2 | MODE_AD_DIGITAL); // SSP1 MISO
+    palSetLineMode(LINE_SSP1_SCK, MODE_FUNC_ALT3 | MODE_AD_DIGITAL); // SSP1 SCK
+    palSetLine(LINE_LED1_CS);
+    palSetLine(LINE_LED2_CS);
+    spiStart(&SPID1, &spi1Config);
 }

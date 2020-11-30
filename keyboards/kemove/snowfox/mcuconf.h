@@ -32,5 +32,7 @@
 #define LPC_USB_USE_USB1                            TRUE
 #define LPC_USB_USB1_IRQ_PRIORITY                   3
 
+#define LPC_SPI_USE_SPI1                            TRUE
+#define LPC_SPI_SPI1_IRQ_PRIORITY                   2
 
 #endif /* _MCUCONF_H_ */

@@ -57,6 +57,12 @@
 #define LINE_COL8                                       PAL_LINE(IOPORT0, 11)
 #define LINE_COL9                                       PAL_LINE(IOPORT1, 11)
 
+// LEDControllers
+#define LINE_SSP1_MOSI                                  PAL_LINE(IOPORT0, 21)
+#define LINE_SSP1_MISO                                  PAL_LINE(IOPORT1, 21)
+#define LINE_SSP1_SCK                                   PAL_LINE(IOPORT1, 15)
+#define LINE_LED1_CS                                    PAL_LINE(IOPORT1, 12)
+#define LINE_LED2_CS                                    PAL_LINE(IOPORT0, 17)
 
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus
