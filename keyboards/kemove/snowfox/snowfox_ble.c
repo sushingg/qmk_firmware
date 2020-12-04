@@ -193,13 +193,16 @@ static void ble_command_withOk(const char* string) {
     ble_ok = 0;
     ble_command(string);
     while(ble_ok == 0) {
-        chCondWait(&ble_ok_cond);
+        if(chCondWaitTimeout(&ble_ok_cond, TIME_MS2I(100)) == MSG_TIMEOUT) {
+            break;
+        }
     }
     ble_ok = 0;
     chMtxUnlock(&ble_ok_mutex);
 }
 
 void snowfox_ble_select(uint8_t port) {
+    ble_command("AT\r\n");
     chMtxLock(&ble_ok_mutex);
     ble_ok = 0;
     switch (port) {
@@ -213,19 +216,24 @@ void snowfox_ble_select(uint8_t port) {
             chMtxUnlock(&ble_ok_mutex); return;
     }
     while(ble_ok == 0) {
-        chCondWait(&ble_ok_cond);
+        if(chCondWaitTimeout(&ble_ok_cond, TIME_MS2I(100)) == MSG_TIMEOUT) {
+            break;
+        }
     }
     ble_ok = 0;
     chMtxUnlock(&ble_ok_mutex);
 }
 void snowfox_ble_discover(void) {
+    ble_command("AT\r\n");
     ble_command_withOk("AT+DISCOVER\r\n");
 }
 void snowfox_ble_connect(void) {
+    ble_command("AT\r\n");
     ble_command_withOk("AT+CONN\r\n");
     snowfox_ble_swtich_ble_driver();
 }
 void snowfox_ble_disconnect(void) {
+    ble_command("AT\r\n");
     ble_command_withOk("AT+DISCONN\r\n");
     snowfox_restore_driver();
 }
