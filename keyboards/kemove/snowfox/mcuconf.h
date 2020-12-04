@@ -35,4 +35,10 @@
 #define LPC_SPI_USE_SPI1                            TRUE
 #define LPC_SPI_SPI1_IRQ_PRIORITY                   2
 
+#define LPC_UART_USE_UART1                          FALSE
+#define LPC_UART_UART1_IRQ_PRIORITY                 1
+
+#define LPC_SERIAL_USE_UART1                        TRUE
+
+
 #endif /* _MCUCONF_H_ */

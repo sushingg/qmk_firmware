@@ -64,6 +64,11 @@
 #define LINE_LED1_CS                                    PAL_LINE(IOPORT1, 12)
 #define LINE_LED2_CS                                    PAL_LINE(IOPORT0, 17)
 
+
+#define LINE_UART_RX                                    PAL_LINE(IOPORT1, 26)
+#define LINE_UART_TX                                    PAL_LINE(IOPORT1, 27)
+#define LINE_BLE_RSTN                                   PAL_LINE(IOPORT1, 14)
+
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus
 extern "C" {

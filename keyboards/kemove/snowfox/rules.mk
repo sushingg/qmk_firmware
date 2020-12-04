@@ -1,6 +1,7 @@
 # KEMOVE_SNOWFOX
 SRC = matrix.c \
-	sled17341.c
+	sled17341.c \
+	snowfox_ble.c
 
 LAYOUTS +=
 

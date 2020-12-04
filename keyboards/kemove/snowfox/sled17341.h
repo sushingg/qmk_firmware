@@ -20,11 +20,11 @@ typedef struct HsvColor
 } HsvColor;
 
 
-void led_init(void);
-void led_update_matrix(void);
-void led_on(void);
-void led_off(void);
-static void led_set_color(uint8_t key, uint8_t r, uint8_t g, uint8_t b) {
+void snowfox_led_init(void);
+void snowfox_led_update_matrix(void);
+void snowfox_led_on(void);
+void snowfox_led_off(void);
+static void snowfox_led_set_color(uint8_t key, uint8_t r, uint8_t g, uint8_t b) {
     led_matrix[led_map[key]] = r;
     led_matrix[led_map[key]+12] = g;
     led_matrix[led_map[key]+24] = b;
