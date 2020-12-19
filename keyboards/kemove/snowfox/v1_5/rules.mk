@@ -14,7 +14,7 @@ MCU_SERIES = LPC11Uxx
 MCU_LDSCRIPT = LPC11U35_401_KEMOVE
 MCU_STARTUP = lpc11uxx
 
-BOARD = KEMOVE_SNOWFOX
+BOARD = KEMOVE_SNOWFOX/v1_5
 
 OPT_DEFS = -Wno-unused-function -fdump-rtl-dfinish -fstack-usage
 #EXTRALDFLAGS = -Wl,--print-memory-usage

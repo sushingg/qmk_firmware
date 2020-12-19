@@ -34,22 +34,6 @@ void matrix_init(void) {
     memset(matrix_debouncing, 0, MATRIX_ROWS * sizeof(matrix_row_t));
     memset(debounce_times, 0, MATRIX_ROWS * sizeof(uint32_t));
 
-    // Keyboard Matrix
-    for (int i = 0; i < MATRIX_ROWS; ++i)
-    {
-        palSetLineMode(row_list[i], MODE_DIR_OUT | MODE_AD_DIGITAL);
-        palClearLine(row_list[i]);
-    }
-
-    for (int i = 0; i < MATRIX_COLS; ++i)
-    {
-        if (i == 7) {
-            palSetLineMode(col_list[i], MODE_FUNC_ALT1 | MODE_DIR_IN | MODE_MODE_PULL_DOWN | MODE_AD_DIGITAL);
-        } else {
-            palSetLineMode(col_list[i], MODE_DIR_IN | MODE_MODE_PULL_DOWN | MODE_AD_DIGITAL);
-        }
-    }
-
     matrix_init_quantum();
 }
 

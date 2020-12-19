@@ -24,6 +24,7 @@
  * Board identifier.
  */
 #define SNOWFOX
+#define SNOWFOX_V1_5
 #define BOARD_NAME                  "KEMOVE Snowfox"
 
 #ifndef LPC11U35
@@ -39,23 +40,23 @@
 #define LINE_USBVBUS                                    PAL_LINE(IOPORT0, 3)
 
 #define LINE_ROW1                                       PAL_LINE(IOPORT1, 25)
-#define LINE_ROW2                                       PAL_LINE(IOPORT0, 20)
-#define LINE_ROW3                                       PAL_LINE(IOPORT1, 4)
-#define LINE_ROW4                                       PAL_LINE(IOPORT1, 20)
-#define LINE_ROW5                                       PAL_LINE(IOPORT1, 24)
+#define LINE_ROW2                                       PAL_LINE(IOPORT0, 0) // Not sure
+#define LINE_ROW3                                       PAL_LINE(IOPORT1, 20)
+#define LINE_ROW4                                       PAL_LINE(IOPORT0, 5)
+#define LINE_ROW5                                       PAL_LINE(IOPORT0, 7)
 #define LINE_ROW6                                       PAL_LINE(IOPORT1, 19)
-#define LINE_ROW7                                       PAL_LINE(IOPORT1, 17)
-#define LINE_ROW8                                       PAL_LINE(IOPORT1, 23)
+#define LINE_ROW7                                       PAL_LINE(IOPORT1, 23)
+#define LINE_ROW8                                       PAL_LINE(IOPORT1, 24)
 
-#define LINE_COL1                                       PAL_LINE(IOPORT1, 18)
-#define LINE_COL2                                       PAL_LINE(IOPORT0, 7)
-#define LINE_COL3                                       PAL_LINE(IOPORT1, 28)
-#define LINE_COL4                                       PAL_LINE(IOPORT1, 5)
-#define LINE_COL5                                       PAL_LINE(IOPORT1, 2)
-#define LINE_COL6                                       PAL_LINE(IOPORT1, 8)
-#define LINE_COL7                                       PAL_LINE(IOPORT0, 22)
-#define LINE_COL8                                       PAL_LINE(IOPORT0, 11)
-#define LINE_COL9                                       PAL_LINE(IOPORT1, 11)
+#define LINE_COL1                                       PAL_LINE(IOPORT1, 28)
+#define LINE_COL2                                       PAL_LINE(IOPORT1, 31)
+#define LINE_COL3                                       PAL_LINE(IOPORT0, 22)
+#define LINE_COL4                                       PAL_LINE(IOPORT1, 29)
+#define LINE_COL5                                       PAL_LINE(IOPORT0, 11) // Alt Setting
+#define LINE_COL6                                       PAL_LINE(IOPORT0, 12) // Alt
+#define LINE_COL7                                       PAL_LINE(IOPORT0, 13) // Alt
+#define LINE_COL8                                       PAL_LINE(IOPORT0, 14) // Alt
+#define LINE_COL9                                       PAL_LINE(IOPORT1, 13)
 
 // LEDControllers
 #define LINE_SSP1_MOSI                                  PAL_LINE(IOPORT0, 21)
@@ -65,9 +66,9 @@
 #define LINE_LED2_CS                                    PAL_LINE(IOPORT0, 17)
 
 
-#define LINE_UART_RX                                    PAL_LINE(IOPORT1, 26)
+#define LINE_UART_RX                                    PAL_LINE(IOPORT1, 14)
 #define LINE_UART_TX                                    PAL_LINE(IOPORT1, 27)
-#define LINE_BLE_RSTN                                   PAL_LINE(IOPORT1, 14)
+#define LINE_BLE_RSTN                                   PAL_LINE(IOPORT0, 20)
 
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus
