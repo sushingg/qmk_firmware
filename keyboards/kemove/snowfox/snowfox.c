@@ -42,6 +42,13 @@ void matrix_init_kb(void) {
     matrix_init_user();
 }
 
+void bootloader_jump(void) {
+    *((volatile uint32_t*) 0x100001F0) = 0xDEADBEEF;
+    __asm__ __volatile__("dsb");
+    SCB->AIRCR = 0x05FA0004; // Sys Reset
+    __asm__ __volatile__("dsb");
+    while(1) {}
+}
 
 /*!
  * @returns false   processing for this keycode has been completed.
