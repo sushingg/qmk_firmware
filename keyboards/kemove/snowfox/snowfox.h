@@ -23,4 +23,6 @@ THD_FUNCTION(LEDThread, arg);
 extern SerialConfig serialCfg;
 extern thread_t *bleThread;
 
+extern const SPIConfig spi1Config;
+
 #endif

@@ -8,6 +8,13 @@ SerialConfig serialCfg = {
     9600
 };
 
+const SPIConfig spi1Config = {
+  .clock_divider = 1, // No Division
+  .clock_prescaler = 24, // To 2MHz
+  .clock_rate = 4, // Divide 2 again to be 1MHz
+  .data_size = 8, // 8 bits per transfer
+};
+
 THD_WORKING_AREA(waLEDThread, 128);
 THD_FUNCTION(LEDThread, arg) {
     (void)arg;

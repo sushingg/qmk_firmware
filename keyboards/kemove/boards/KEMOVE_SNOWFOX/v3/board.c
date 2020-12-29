@@ -52,13 +52,6 @@ const ioline_t col_list[MATRIX_COLS] = {
 void __chibios_override___early_init(void) {
 }
 
-const SPIConfig spi1Config = {
-  .clock_divider = 1, // No Division
-  .clock_prescaler = 24, // To 2MHz
-  .clock_rate = 1, // Divide 2 again to be 1MHz
-  .data_size = 8, // 8 bits per transfer
-};
-
 /**
  * @brief   Board-specific initialization code.
  * @todo    Add your board-specific code, if any.
