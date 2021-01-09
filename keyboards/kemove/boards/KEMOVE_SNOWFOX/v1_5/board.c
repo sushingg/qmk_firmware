@@ -67,28 +67,29 @@ void __chibios_override_boardInit(void) {
     for (int i = 0; i < MATRIX_ROWS; ++i)
     {
         if (i == 1) {
-            palSetLineMode(row_list[i], MODE_FUNC_ALT1 | MODE_DIR_OUT | MODE_AD_DIGITAL);
+            palSetLineMode(row_list[i], MODE_FUNC_ALT1 | MODE_DIR_IN | MODE_MODE_PULL_UP | MODE_AD_DIGITAL);
         } else {
-            palSetLineMode(row_list[i], MODE_DIR_OUT | MODE_AD_DIGITAL);
+            palSetLineMode(row_list[i], MODE_DIR_IN | MODE_MODE_PULL_UP | MODE_AD_DIGITAL);
         }
-        palClearLine(row_list[i]);
+        palSetLine(row_list[i]);
     }
 
     for (int i = 0; i < MATRIX_COLS; ++i)
     {
         if (i >= 4 && i <= 7) {
-            palSetLineMode(col_list[i], MODE_FUNC_ALT1 | MODE_DIR_IN | MODE_MODE_PULL_DOWN | MODE_AD_DIGITAL);
+            palSetLineMode(col_list[i], MODE_FUNC_ALT1 | MODE_DIR_OUT | MODE_AD_DIGITAL);
         } else {
-            palSetLineMode(col_list[i], MODE_DIR_IN | MODE_MODE_PULL_DOWN | MODE_AD_DIGITAL);
+            palSetLineMode(col_list[i], MODE_DIR_OUT | MODE_MODE_PULL_UP | MODE_AD_DIGITAL);
         }
+        palSetLine(col_list[i]);
     }
 
     // LEDs
-    // palSetLineMode(LINE_LED1_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);
-    // palSetLineMode(LINE_LED2_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);
-    // palSetLineMode(LINE_SSP1_MOSI, MODE_FUNC_ALT2 | MODE_AD_DIGITAL); // SSP1 MOSI
-    // palSetLineMode(LINE_SSP1_MISO, MODE_FUNC_ALT2 | MODE_AD_DIGITAL); // SSP1 MISO
-    // palSetLineMode(LINE_SSP1_SCK, MODE_FUNC_ALT3 | MODE_AD_DIGITAL); // SSP1 SCK
+    palSetLineMode(LINE_LED1_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);
+    palSetLineMode(LINE_LED2_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);
+    palSetLineMode(LINE_SSP1_MOSI, MODE_FUNC_ALT2 | MODE_AD_DIGITAL); // SSP1 MOSI
+    palSetLineMode(LINE_SSP1_MISO, MODE_FUNC_ALT2 | MODE_AD_DIGITAL); // SSP1 MISO
+    palSetLineMode(LINE_SSP1_SCK, MODE_FUNC_ALT3 | MODE_AD_DIGITAL); // SSP1 SCK
     // palSetLine(LINE_LED1_CS);
     // palSetLine(LINE_LED2_CS);
 
