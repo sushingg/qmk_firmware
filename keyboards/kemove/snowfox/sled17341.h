@@ -1,6 +1,9 @@
 #pragma once
 
 #include <stdint.h>
+#include "ch.h"
+
+extern mutex_t led_mutex;
 extern uint8_t led_matrix[288];
 
 extern const uint8_t led_map[61];

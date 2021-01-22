@@ -67,17 +67,18 @@ void __chibios_override_boardInit(void) {
     // Keyboard Matrix
     for (int i = 0; i < MATRIX_ROWS; ++i)
     {
-        palSetLineMode(row_list[i], MODE_DIR_OUT | MODE_AD_DIGITAL);
-        palClearLine(row_list[i]);
+        palSetLineMode(row_list[i], MODE_DIR_IN | MODE_MODE_PULL_UP | MODE_AD_DIGITAL);
+        palSetLine(row_list[i]);
     }
 
     for (int i = 0; i < MATRIX_COLS; ++i)
     {
         if (i == 7) {
-            palSetLineMode(col_list[i], MODE_FUNC_ALT1 | MODE_DIR_IN | MODE_MODE_PULL_DOWN | MODE_AD_DIGITAL);
+            palSetLineMode(col_list[i], MODE_FUNC_ALT1 | MODE_DIR_OUT | MODE_AD_DIGITAL);
         } else {
-            palSetLineMode(col_list[i], MODE_DIR_IN | MODE_MODE_PULL_DOWN | MODE_AD_DIGITAL);
+            palSetLineMode(col_list[i], MODE_DIR_OUT | MODE_AD_DIGITAL);
         }
+        palSetLine(col_list[i]);
     }
 
     // LEDs

@@ -8,6 +8,7 @@
 #include <string.h>
 
 uint8_t led_matrix[288];
+mutex_t led_mutex;
 
 const uint8_t led_map[61] = {
   2,3,4,5,6,7,8,9,10,11,36,37,189,190,
@@ -62,34 +63,43 @@ void snowfox_led_init_update(void) {
 }
 
 void snowfox_led_init(void) {
-    setup_led_controller(LINE_LED1_CS);
-    setup_led_controller(LINE_LED2_CS);
-    memset(led_matrix, 0x0, 288);
-    snowfox_led_init_update();
+  chMtxObjectInit(&led_mutex);
+  chMtxLock(&led_mutex);
+  setup_led_controller(LINE_LED1_CS);
+  setup_led_controller(LINE_LED2_CS);
+  memset(led_matrix, 0x0, 288);
+  snowfox_led_init_update();
+  chMtxUnlock(&led_mutex);
 }
 
 void snowfox_led_update_matrix(void) {
-    uint8_t buffer2[2] = {0x20, 0x24};
+  uint8_t buffer2[2] = {0x20, 0x24};
 
-    palClearLine(LINE_LED1_CS);
-    spiStartSend(&SPID1, 2, buffer2);
-    spiStartSend(&SPID1, 144, &led_matrix[0]);
-    palSetLine(LINE_LED1_CS);
+  chMtxLock(&led_mutex);
+  palClearLine(LINE_LED1_CS);
+  spiStartSend(&SPID1, 2, buffer2);
+  spiStartSend(&SPID1, 144, &led_matrix[0]);
+  palSetLine(LINE_LED1_CS);
 
-    palClearLine(LINE_LED2_CS);
-    spiStartSend(&SPID1, 2, buffer2);
-    spiStartSend(&SPID1, 144, &led_matrix[144]);
-    palSetLine(LINE_LED2_CS);
+  palClearLine(LINE_LED2_CS);
+  spiStartSend(&SPID1, 2, buffer2);
+  spiStartSend(&SPID1, 144, &led_matrix[144]);
+  palSetLine(LINE_LED2_CS);
+  chMtxUnlock(&led_mutex);
 }
 
 void snowfox_led_on(void) {
-    sled_write_reg(LINE_LED1_CS, 0xB, 0xA, 0x1); // Power Down
-    sled_write_reg(LINE_LED2_CS, 0xB, 0xA, 0x1); // Power Down
+  chMtxLock(&led_mutex);
+  sled_write_reg(LINE_LED1_CS, 0xB, 0xA, 0x1); // Power Down
+  sled_write_reg(LINE_LED2_CS, 0xB, 0xA, 0x1); // Power Down
+  chMtxUnlock(&led_mutex);
 }
 
 void snowfox_led_off(void) {
-    sled_write_reg(LINE_LED1_CS, 0xB, 0xA, 0x0); // Power Down
-    sled_write_reg(LINE_LED2_CS, 0xB, 0xA, 0x0); // Power Down
+  chMtxLock(&led_mutex);
+  sled_write_reg(LINE_LED1_CS, 0xB, 0xA, 0x0); // Power Down
+  sled_write_reg(LINE_LED2_CS, 0xB, 0xA, 0x0); // Power Down
+  chMtxUnlock(&led_mutex);
 }
 
 RgbColor HsvToRgb(HsvColor hsv)
