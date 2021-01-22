@@ -34,10 +34,15 @@ THD_FUNCTION(LEDThread, arg) {
     }
 }
 
+void dip_switch_init_kb(void){}
+
 void matrix_scan_kb(void) {
     matrix_scan_user();
 }
 
+void dip_switch_update_kb(uint8_t index, bool active) {
+    dip_switch_update_user(index, active);
+}
 
 void matrix_init_kb(void) {
     chMtxObjectInit(&ble_ok_mutex);

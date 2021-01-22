@@ -57,11 +57,15 @@ __attribute__((weak)) void dip_switch_update_mask_user(uint32_t state) {}
 
 __attribute__((weak)) void dip_switch_update_mask_kb(uint32_t state) { dip_switch_update_mask_user(state); }
 
-void dip_switch_init(void) {
-#ifdef DIP_SWITCH_PINS
+__attribute__((weak)) void dip_switch_init_kb(void) {
     for (uint8_t i = 0; i < NUMBER_OF_DIP_SWITCHES; i++) {
         setPinInputHigh(dip_switch_pad[i]);
     }
+}
+
+void dip_switch_init(void) {
+#ifdef DIP_SWITCH_PINS
+    dip_switch_init_kb();
     dip_switch_read(true);
 #endif
 #ifdef DIP_SWITCH_MATRIX_GRID

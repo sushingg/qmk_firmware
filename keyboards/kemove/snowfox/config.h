@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (c) 2018 Charlie Waters
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,6 +40,9 @@
 #define KEYMAP_60_ANSI
 
 // Matrix keymap
+#if defined(SNOWFOX_V1_2) || defined(SNOWFOX_V3)
+#define DIP_SWITCH_PINS { LINE_WINMAC }
+#endif
 
 #define LAYOUT KEYMAP
 

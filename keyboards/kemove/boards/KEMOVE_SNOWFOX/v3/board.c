@@ -80,6 +80,8 @@ void __chibios_override_boardInit(void) {
         }
         palSetLine(col_list[i]);
     }
+    palSetLineMode(LINE_WINMAC, MODE_AD_DIGITAL | MODE_DIR_IN | MODE_MODE_PULL_UP);
+
 
     // LEDs
     palSetLineMode(LINE_LED1_CS, MODE_DIR_OUT | MODE_AD_DIGITAL);

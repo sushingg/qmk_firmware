@@ -39,6 +39,8 @@
 #define LINE_USBCONN                                    PAL_LINE(IOPORT0, 6)
 #define LINE_USBVBUS                                    PAL_LINE(IOPORT0, 3)
 
+#define LINE_WINMAC                                     PAL_LINE(IOPORT1, 1)
+
 #define LINE_ROW1                                       PAL_LINE(IOPORT1, 25)
 #define LINE_ROW2                                       PAL_LINE(IOPORT0, 20)
 #define LINE_ROW3                                       PAL_LINE(IOPORT1, 4)
