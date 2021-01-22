@@ -42,7 +42,7 @@ void matrix_scan_kb(void) {
 void matrix_init_kb(void) {
     chMtxObjectInit(&ble_ok_mutex);
     chCondObjectInit(&ble_ok_cond);
-    #ifdef SNOWFOX_V3
+    #if defined(SNOWFOX_V3) || defined(SNOWFOX_V1_2) 
     (void) chThdCreateStatic(waLEDThread, sizeof(waLEDThread), NORMALPRIO, LEDThread, NULL);
     #endif
     bleThread = chThdCreateStatic(waBLEThread, sizeof(waBLEThread), NORMALPRIO, BLEThread, NULL);
