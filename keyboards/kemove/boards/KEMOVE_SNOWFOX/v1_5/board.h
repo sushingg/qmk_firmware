@@ -62,8 +62,8 @@
 #define LINE_SSP1_MOSI                                  PAL_LINE(IOPORT0, 21)
 #define LINE_SSP1_MISO                                  PAL_LINE(IOPORT1, 21)
 #define LINE_SSP1_SCK                                   PAL_LINE(IOPORT1, 15)
-#define LINE_LED1_CS                                    PAL_LINE(IOPORT1, 12)
-#define LINE_LED2_CS                                    PAL_LINE(IOPORT0, 17)
+#define LINE_LED1_CS                                    PAL_LINE(IOPORT0, 19)
+#define LINE_LED2_CS                                    PAL_LINE(IOPORT1, 16)
 
 
 #define LINE_UART_RX                                    PAL_LINE(IOPORT1, 14)
