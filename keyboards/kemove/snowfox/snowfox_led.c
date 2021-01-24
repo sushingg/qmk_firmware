@@ -8,16 +8,19 @@ const SPIConfig spi1Config = {
 };
 
 
+uint8_t led_brightness = 0xFF;
+
 THD_WORKING_AREA(waLEDThread, 128);
 THD_FUNCTION(LEDThread, arg) {
     (void)arg;
     chRegSetThreadName("LEDThread");
     snowfox_led_init();
     snowfox_led_off();
-    HsvColor currentColor = {.h = 0, .s = 0xFF, .v = 0xFF};
+    HsvColor currentColor = {.h = 0, .s = 0xFF, .v = led_brightness};
     while(1) {
         chThdSleepMilliseconds(50);
         currentColor.h += 1;
+        currentColor.v = led_brightness;
         RgbColor rgb = HsvToRgb(currentColor);
         for (int i = 0; i < 61; ++i)
         {

@@ -48,18 +48,29 @@ bool OVERRIDE process_record_kb(uint16_t keycode, keyrecord_t *record) {
             case SNOWFOX_LED_OFF:
                 snowfox_led_off();
                 return false;
+            case SNOWFOX_LED_BUP:
+                if ((0xFF - led_brightness) >= SF_LED_STEP) {
+                    led_brightness += SF_LED_STEP;
+                } else {
+                    led_brightness = 0xFF;
+                }
+                return false;
+            case SNOWFOX_LED_BDN:
+                if (led_brightness > (0x10 + SF_LED_STEP)) {
+                    led_brightness -= SF_LED_STEP;
+                } else {
+                    led_brightness = 0x10;
+                }
+                return false;
             case SNOWFOX_BLE_CONN:
                 snowfox_ble_connect();
                 return false;
-
             case SNOWFOX_BLE_DISCOVER:
                 snowfox_ble_discover();
                 return false;
-
             case SNOWFOX_BLE_DISCONN:
                 snowfox_ble_disconnect();
                 return false;
-
             default:
                 break;
         }
