@@ -40,9 +40,7 @@
 #define KEYMAP_60_ANSI
 
 // Matrix keymap
-#if defined(SNOWFOX_V1_2) || defined(SNOWFOX_V3)
 #define DIP_SWITCH_PINS { LINE_WINMAC }
-#endif
 
 #define LAYOUT KEYMAP
 
