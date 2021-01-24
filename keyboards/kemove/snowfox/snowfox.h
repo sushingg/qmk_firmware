@@ -11,8 +11,11 @@
 enum SNOWFOX_KEYCODES {
     SNOWFOX_LED_ON = SAFE_RANGE,
     SNOWFOX_LED_OFF,
-    SNOWFOX_LED_BUP,
-    SNOWFOX_LED_BDN,
+    SNOWFOX_LED_NEXT, // Next Profile
+    SNOWFOX_LED_PUP, // Profile Specific action Up
+    SNOWFOX_LED_PDN, // Profile Specific action Down
+    SNOWFOX_LED_BUP, // Brightness Up
+    SNOWFOX_LED_BDN, // Brightness Down
     SNOWFOX_BLE_CONN,
     SNOWFOX_BLE_DISCOVER,
     SNOWFOX_BLE_DISCONN,
@@ -29,5 +32,9 @@ extern thread_t *bleThread;
 
 extern const SPIConfig spi1Config;
 extern uint8_t led_brightness;
+
+void snowfox_led_on(void);
+void snowfox_led_off(void);
+void snowfox_led_next(void);
 
 #endif

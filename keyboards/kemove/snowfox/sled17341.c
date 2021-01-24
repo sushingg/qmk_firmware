@@ -45,7 +45,7 @@ static void setup_led_controller(ioline_t line) {
 
 static uint8_t buffer[0xB6 - 144];
 
-void snowfox_led_init_update(void) {
+void sled_init_update(void) {
   buffer[0] = 0x20;
   buffer[1] = 0;
   memset(&buffer[0x0 + 2], 0xFF, 0x12); // Turn ON
@@ -62,17 +62,17 @@ void snowfox_led_init_update(void) {
   palSetLine(LINE_LED2_CS);
 }
 
-void snowfox_led_init(void) {
+void sled_init(void) {
   chMtxObjectInit(&led_mutex);
   chMtxLock(&led_mutex);
   setup_led_controller(LINE_LED1_CS);
   setup_led_controller(LINE_LED2_CS);
   memset(led_matrix, 0x0, 288);
-  snowfox_led_init_update();
+  sled_init_update();
   chMtxUnlock(&led_mutex);
 }
 
-void snowfox_led_update_matrix(void) {
+void sled_update_matrix(void) {
   uint8_t buffer2[2] = {0x20, 0x24};
 
   chMtxLock(&led_mutex);
@@ -88,14 +88,14 @@ void snowfox_led_update_matrix(void) {
   chMtxUnlock(&led_mutex);
 }
 
-void snowfox_led_on(void) {
+void sled_on(void) {
   chMtxLock(&led_mutex);
   sled_write_reg(LINE_LED1_CS, 0xB, 0xA, 0x1); // Power Down
   sled_write_reg(LINE_LED2_CS, 0xB, 0xA, 0x1); // Power Down
   chMtxUnlock(&led_mutex);
 }
 
-void snowfox_led_off(void) {
+void sled_off(void) {
   chMtxLock(&led_mutex);
   sled_write_reg(LINE_LED1_CS, 0xB, 0xA, 0x0); // Power Down
   sled_write_reg(LINE_LED2_CS, 0xB, 0xA, 0x0); // Power Down

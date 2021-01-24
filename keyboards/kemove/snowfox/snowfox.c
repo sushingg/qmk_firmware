@@ -48,6 +48,13 @@ bool OVERRIDE process_record_kb(uint16_t keycode, keyrecord_t *record) {
             case SNOWFOX_LED_OFF:
                 snowfox_led_off();
                 return false;
+            case SNOWFOX_LED_NEXT:
+                snowfox_led_next();
+                return false;
+            case SNOWFOX_LED_PUP:
+                return false;
+            case SNOWFOX_LED_PDN:
+                return false;
             case SNOWFOX_LED_BUP:
                 if ((0xFF - led_brightness) >= SF_LED_STEP) {
                     led_brightness += SF_LED_STEP;
