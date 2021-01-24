@@ -14,6 +14,8 @@ void matrix_scan_kb(void) {
     matrix_scan_user();
 }
 
+__attribute__((weak)) void dip_switch_update_user(uint8_t idx, bool active) {}
+
 void dip_switch_update_kb(uint8_t index, bool active) {
     dip_switch_update_user(index, active);
 }
