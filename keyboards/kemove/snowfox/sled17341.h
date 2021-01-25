@@ -22,7 +22,7 @@ typedef struct HsvColor
     unsigned char v;
 } HsvColor;
 
-
+void sled_early_init(void);
 void sled_init(void);
 void sled_update_matrix(void);
 void sled_on(void);

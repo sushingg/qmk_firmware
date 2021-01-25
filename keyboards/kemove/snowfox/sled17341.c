@@ -62,8 +62,11 @@ void sled_init_update(void) {
   palSetLine(LINE_LED2_CS);
 }
 
-void sled_init(void) {
+void sled_early_init(void) {
   chMtxObjectInit(&led_mutex);
+}
+
+void sled_init(void) {
   chMtxLock(&led_mutex);
   setup_led_controller(LINE_LED1_CS);
   setup_led_controller(LINE_LED2_CS);

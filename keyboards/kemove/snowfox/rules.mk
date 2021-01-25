@@ -2,7 +2,8 @@
 SRC = matrix.c \
 	sled17341.c \
 	snowfox_ble.c \
-	snowfox_led.c
+	snowfox_led.c \
+	hardfault_handler.c
 
 LAYOUTS +=
 

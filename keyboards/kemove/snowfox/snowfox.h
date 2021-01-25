@@ -33,6 +33,9 @@ extern thread_t *bleThread;
 extern const SPIConfig spi1Config;
 extern uint8_t led_brightness;
 
+void snowfox_early_init(void);
+void snowfox_early_led_init(void);
+
 void snowfox_led_on(void);
 void snowfox_led_off(void);
 void snowfox_led_next(void);

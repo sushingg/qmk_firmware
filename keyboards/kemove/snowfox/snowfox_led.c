@@ -1,4 +1,5 @@
 #include "snowfox.h"
+#include "snowfox_ble.h"
 
 const SPIConfig spi1Config = {
   .clock_divider = 1, // No Division
@@ -55,11 +56,15 @@ static uint8_t current_profile = 0;
 const uint8_t num_profiles = sizeof(led_profiles) / sizeof(led_profiles[0]);
 static bool led_active = false;
 
+void snowfox_early_led_init(void) {
+    sled_early_init();
+    chMtxObjectInit(&led_profile_mutex);
+}
+
 THD_WORKING_AREA(waLEDThread, 128);
 THD_FUNCTION(LEDThread, arg) {
     (void)arg;
     chRegSetThreadName("LEDThread");
-    chMtxObjectInit(&led_profile_mutex);
     sled_init();
     sled_off();
     while(1) {
@@ -76,6 +81,22 @@ void snowfox_led_next(void) {
     chMtxLock(&led_profile_mutex);
     current_profile = (current_profile + 1) % num_profiles;
     chMtxUnlock(&led_profile_mutex);
+}
+
+void suspend_power_down_kb(void) {
+#if ENABLE_SLEEP_LED == TRUE
+    if (led_active && !snowfox_ble_is_active()) {
+        sled_off();
+    }
+#endif
+}
+
+void suspend_wakeup_init_kb(void) {
+#if ENABLE_SLEEP_LED == TRUE
+    if (led_active) {
+        sled_on();
+    }
+#endif
 }
 
 void snowfox_led_on(void) {

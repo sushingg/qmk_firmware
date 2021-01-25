@@ -28,6 +28,8 @@
 
 #define KEMOVE_SNOWFOX
 
+#define ENABLE_SLEEP_LED    TRUE
+
 // key matrix size
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 9

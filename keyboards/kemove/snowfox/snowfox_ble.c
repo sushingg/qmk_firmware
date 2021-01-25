@@ -159,6 +159,10 @@ THD_FUNCTION(BLEThread, arg) {
 
 /* -------------------- Public Function Implementation ---------------------- */
 
+bool snowfox_ble_is_active(void) {
+    return host_get_driver() == &snowfox_ble_driver;
+}
+
 void snowfox_ble_startup(void) {
     sdStart(&SD1, &serialCfg);
     palClearLine(LINE_BLE_RSTN);
@@ -223,6 +227,7 @@ void snowfox_ble_select(uint8_t port) {
     ble_ok = 0;
     chMtxUnlock(&ble_ok_mutex);
 }
+
 void snowfox_ble_discover(void) {
     ble_command("AT\r\n");
     ble_command_withOk("AT+DISCOVER\r\n");

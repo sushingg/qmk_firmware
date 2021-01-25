@@ -33,3 +33,4 @@ void snowfox_ble_select(uint8_t port);
 void snowfox_ble_discover(void);
 void snowfox_ble_connect(void);
 void snowfox_ble_disconnect(void);
+bool snowfox_ble_is_active(void);
