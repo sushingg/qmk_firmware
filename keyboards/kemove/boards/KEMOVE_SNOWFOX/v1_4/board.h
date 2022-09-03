@@ -24,7 +24,7 @@
  * Board identifier.
  */
 #define SNOWFOX
-#define SNOWFOX_V1_5
+#define SNOWFOX_V1_4
 #define BOARD_NAME                  "KEMOVE Snowfox"
 
 #ifndef LPC11U35
@@ -83,3 +83,4 @@ extern "C" {
 #endif /* _FROM_ASM_ */
 
 #endif /* BOARD_H */
+
