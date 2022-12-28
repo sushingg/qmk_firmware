@@ -1,0 +1,1 @@
+qmk compile -kb kemove/snowfox/v1_4 -km shingg
