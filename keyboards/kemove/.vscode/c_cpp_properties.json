@@ -1,0 +1,62 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:/shin/qmk/lib/chibios/os/hal/ports/common/ARMCMx",
+                "D:/QMK_MSYS/mingw64/avr/include/**",
+                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/*",
+                "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/atlmfc/include/*",
+
+
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/um",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/ucrt",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/shared",
+                "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/winrt",
+
+                "D:/QMK_MSYS/mingw64/avr/include/**",
+                "D:/QMK_MSYS/mingw64/arm-none-eabi/include/**",
+                "D:/QMK_MSYS/mingw64/lib/gcc/avr/8.5.0/include/**",
+                "D:/QMK_MSYS/mingw64/lib/gcc/avr/8.5.0/include-fixed/**",
+                "D:/QMK_MSYS/mingw64/lib/gcc/arm-none-eabi/10.1.0/include/**",
+                "D:/QMK_MSYS/mingw64/lib/gcc/arm-none-eabi/10.1.0/include-fixed/**",
+
+                "D:/shin/qmk/**",
+                "D:/shin/qmk/quantum/**",
+                "D:/shin/qmk/tmk_core/common/**",
+                "D:/shin/qmk/quantum/audio/**",
+                "D:/shin/qmk/quantum/process_keycode/**",
+                "D:/shin/qmk/drivers/avr/**",
+                "D:/shin/qmk/lib/chibios/**",
+                "D:/shin/qmk/lib/lufa/**"
+
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+
+                "QMK_KEYBOARD_H=<quantum.h>"
+            ],
+            "intelliSenseMode": "windows-msvc-x64",
+
+            "browse": {
+                "path": [
+                    "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/*",
+                    "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/atlmfc/include/*",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/um",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/ucrt",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/shared",
+                    "C:/Program Files (x86)/Windows Kits/10/Include/10.0.22000.0/winrt",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": false,
+                "databaseFilename": ""
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

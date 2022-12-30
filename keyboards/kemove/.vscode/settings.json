@@ -1,0 +1,18 @@
+{
+     "terminal.integrated.profiles.windows": {
+         "QMK_MSYS": {
+             "path": "D:/QMK_MSYS/usr/bin/bash.exe",
+             "env": {
+                 "MSYSTEM": "MINGW64",
+                 "CHERE_INVOKING": "1"
+             },
+             "args": ["--login"]
+         }
+     },
+     "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.defaultProfile.windows": "QMK_MSYS",
+    "files.associations": {
+        "quantum.h": "c",
+        "wait.h": "c"
+    }
+ }
