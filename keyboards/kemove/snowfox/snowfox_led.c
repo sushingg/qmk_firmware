@@ -45,9 +45,19 @@ void led_profile_static_update(void) {
     }
 }
 
+void led_profile_casp_update(void){
+    uint8_t r = 0x69;
+    uint8_t g = 0xfc;
+    uint8_t b = 0xff;
+    for (int i = 0; i < 61; ++i)
+    {
+        sled_set_color(i,r,g,b);
+    }
+}
 // ========= END PROFILES ===========
 
 const led_profile_t led_profiles[] = {
+    {led_profile_casp_update},
     {led_profile_cycle_update},
     {led_profile_static_update},
 };
@@ -111,4 +121,29 @@ void snowfox_led_on(void) {
 void snowfox_led_off(void) {
     sled_off();
     led_active = false;
+}
+
+
+static uint8_t prev_profile = 0;
+static bool prev_led_active = false;
+const uint8_t casp_profile = 0;
+void snowfox_led_caps_on(void){
+    prev_profile = current_profile;
+    chMtxLock(&led_profile_mutex);
+    current_profile = 0;
+    chMtxUnlock(&led_profile_mutex); // End Critical Section
+    sled_on();
+    prev_led_active = led_active;
+    led_active = true;
+}
+
+void snowfox_led_caps_off(void){
+    if(prev_led_active){
+        chMtxLock(&led_profile_mutex);
+        current_profile = prev_profile;
+        chMtxUnlock(&led_profile_mutex); // End Critical Section
+    }else{
+        led_active = false;
+        snowfox_led_off();
+    }
 }

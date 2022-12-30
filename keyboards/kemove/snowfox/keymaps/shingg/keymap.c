@@ -33,17 +33,17 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
   [_FN_LAYER] = KEYMAP(/*1*/
 	KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_DEL,
-	KC_TRNS, KC_PGUP, KC_UP, KC_PGDN, KC_HOME, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+	KC_TRNS, KC_PGUP, KC_UP, KC_PGDN, KC_HOME, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_END, KC_TRNS,
 	KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_END, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-	KC_TRNS, KC_INS, KC_DEL, KC_VOLD, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_SLSH, KC_PSCR,
-	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_RALT, KC_APP, MO(2), KC_TRNS
+	KC_TRNS, KC_INS, KC_DEL, KC_VOLD, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_UP, KC_PSCR,
+	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_TRNS
 ),
   [_FN2_LAYER] = KEYMAP(/*2*/
 	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, SNOWFOX_LED_BDN, SNOWFOX_LED_BUP, SNOWFOX_LED_OFF, SNOWFOX_LED_ON, KC_TRNS,
 	KC_TRNS, KC_TRNS, KC_UP, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSCR, KC_HOME, KC_END, KC_TRNS,
 	KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_PGDN, KC_TRNS,
 	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS, KC_DEL, KC_TRNS,
-	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(0), KC_TRNS
+	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 };
 
@@ -73,6 +73,15 @@ layer_state_t layer_state_set_user(layer_state_t layer) {
     return layer;
 }
 
-bool led_update_user(led_t leds) {
-  return true;
+bool led_update_user(led_t led_state) {
+    static uint8_t caps_state = 0;
+    if (caps_state != led_state.caps_lock) {
+        if (led_state.caps_lock) {
+            snowfox_led_caps_on();
+        } else {
+            snowfox_led_caps_off();
+        }
+        caps_state = led_state.caps_lock;
+    }
+    return true;
 }

@@ -39,5 +39,7 @@ void snowfox_early_led_init(void);
 void snowfox_led_on(void);
 void snowfox_led_off(void);
 void snowfox_led_next(void);
+void snowfox_led_caps_on(void);
+void snowfox_led_caps_off(void);
 
 #endif
