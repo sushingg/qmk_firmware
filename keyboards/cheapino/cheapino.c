@@ -20,7 +20,8 @@ uint32_t flash_led(uint32_t next_trigger_time, void *cb_arg) {
     _hue_countdown--;
     if (_hue_countdown == 0) {
         // Finished, reset to user chosen led color
-        rgblight_sethsv_noeeprom(_hue, _saturation, _value);
+        // rgblight_sethsv_noeeprom(_hue, _saturation, _value);
+        rgblight_sethsv_noeeprom(0, 0, 0); // turn off led after blink
         return 0;
     } else {
         return 50;
